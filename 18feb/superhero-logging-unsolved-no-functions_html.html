@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Superhero Logging - No Functions</title>
+  </head>
+  <body>
+
+    <h1>Open the console to see the magic!</h1>
+
+    <script type="text/javascript">
+
+      // Various Arrays
+      var brands = ["Acer", "Apple", "Sony", "Samsung"];
+      var heroes = ["Black Panther", "Cyborg", "Black Canary", "Donna Troy", "Huntress", "Blue Beetle", "Captain Atom"];
+      var booksOnMyShelf = ["Calculus Early Transcendentals", "Ravens", "The Self Illusion", "Harry Potter"];
+      var thingsInFrontOfMe = ["Laptop", "Beanbag", "Cats", "Slippers"];
+      var howIFeel = ["Sleep Deprived", "Wired on Coffee", "Excited"];
+
+      // For Loop for Brands
+      function loopy(arr) {
+        for (var i=0; i<arr.length;i++) {
+          console.log(arr[i]);
+        }
+        console.log("---------");
+      }
+
+      var arrie = [brands, heroes, booksOnMyShelf, thingsInFrontOfMe, howIFeel];
+
+      //declaring function printy. arr2D is the parameter, takes 1 argument 
+      function printy(arr2D) {
+         for (i=0; i<arr2D.length; i++) {
+        loopy(arr2D[i]);
+      }
+     }
+
+     printy(arrie);
+
+    </script>
+
+  </body>
+</html>

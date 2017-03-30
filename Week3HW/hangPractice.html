@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hangman 1</title>
+</head>
+<body>
+
+	<p>Guesses left: <span id="guess-left"> </span></p>
+	<p>Wrong guesses: <span id="wrong-guesses"></span></p>
+	<h3 id="word-blank"> </h3>
+	<hr>
+	<h3>Wins:<span id="win-count"></span></h3>
+	<h3>Losses:<span id="loss-count"></span></h3>
+
+
+	<script type="text/javascript">
+		var wordList = [
+			"this",
+			"that",
+			"theodore"
+		]
+
+		var chosenWord = "";
+		var letterInChosen = [];
+		var numBlanks = 0;
+		var blanksOrSucc = [];
+		var wrongGuesses = [];
+
+		var winCounter = 0;
+		var lossCounter = 0;
+		var numGuesses = 9;
+
+		function startGame(){
+			/*
+			1. Select a word at random
+			2. Break up word into letters and underscores
+			3. Add underscores to HTML
+			4. numGuesses resets to 9 and blanksandSuccesses starts as empty
+			*/
+			numGuesses = 9; 
+			blanksOrSucc = [];
+			wrongGuesses = [];
+
+			chosenWord = wordList[Math.floor(wordList.length * Math.random())];
+			console.log(chosenWord);
+			lettersInChosen = chosenWord.split("");
+			numBlanks = lettersInChosen.length;
+			console.log(numBlanks);
+
+			for (var i=0; i<numBlanks; i++){
+				blanksOrSucc.push ("_ ");
+
+			}
+			console.log(blanksOrSucc);
+			document.getElementById("guess-left").innerHTML = numGuesses;
+			document.getElementById("word-blank").innerHTML = blanksOrSucc.join(" ");
+		}
+
+		function checkLetters(letter){
+			/*
+			1. Compare the letter the user pick and compare to letters in word
+			2. I want conditional statement to determine if letter is correct or if it is pushed to wrong letters array and guesses--;
+			*/
+			var letterInWord = false;
+
+			for(var i = 0; i<numBlanks; i++){
+				if(lettersInChosen[i] === letter){
+					letterInWord = true;
+				} 
+			}
+			
+
+			function isInArray(item, arr){
+				return item.indexOf(arr) > -1;
+			}
+
+
+			if(letterInWord) {
+
+				if (isInArray(blanksOrSucc, letter)){
+					alert("Already guessed!")
+				} else {
+					for (i =0; i<numBlanks; i++){
+						if (letter === lettersInChosen[i]){
+						blanksOrSucc[i] = letter;
+						} 
+						console.log(blanksOrSucc + " is our answer so far.") 
+					}
+				}
+
+			} else {
+				if(isInArray(wrongGuesses, letter)){
+					alert("Already guessed!")
+				} else {
+					wrongGuesses.push(letter);
+					numGuesses--;
+					console.log("WrongGuesses:", wrongGuesses)
+				}
+			} 
+				 
+
+			// check if the user has already guessed the letter
+
+		}
+
+		function roundComplete(){
+			/*
+			1. Add/update html with letters in word
+			2. update wrong guessed letters list
+			3. update guesses left
+			4. determine win or loss. 
+			*/
+
+			document.getElementById('word-blank').innerHTML = blanksOrSucc.join(" ");
+			document.getElementById('guess-left').innerHTML = numGuesses;
+			document.getElementById('wrong-guesses').innerHTML = wrongGuesses.join(" ");
+
+			if (lettersInChosen.join("") == blanksOrSucc.join("")){
+				alert("You win dude!");
+				winCounter++;
+				playAgain();
+			} else if (numGuesses == 0){
+				alert("You are a Hangman!");
+				document.getElementById('wrong-guesses').innerHTML = "";
+				lossCounter++;
+				playAgain();
+			}
+
+
+			document.getElementById('win-count').innerHTML = winCounter;
+			document.getElementById('loss-count').innerHTML = lossCounter;
+
+
+		}
+		startGame();
+
+		function playAgain(){
+			var playGain = confirm("Play Again?")
+
+			if (playGain) {
+				startGame();
+			} else {
+				location.reload();
+			}
+		}
+
+		document.onkeyup = function(event){
+			/*
+			1. capture the letter typed in
+			2. pass the letter through check letter function. 
+			*/
+			var myLetter = String.fromCharCode(event.keyCode).toLowerCase();
+			console.log("User guesses " + myLetter);
+			checkLetters(myLetter);
+			roundComplete();
+
+		}
+
+
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Submission Forms</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+	<div style="color:white; background-color:black" class="jumbotron text-center">
+		<h1>Employee Data Management</h1>
+		<p class="lead">A Comprehensive Directory of Employee Billable Hours</p>
+	</div>
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">Current Employees</div>
+		<div class="panel-content">
+			<table class="table">
+			<thead>
+				<tr>
+				<th>Employee Name</th>
+				<th>Role</th>
+				<th>Start Date</th>
+				<th>Months Worked</th>
+				<th>Monthly Rate ($)</th>
+				<th>Total Billed ($)</th>
+				</tr>
+			</thead>
+			<tbody id="members">
+		     
+			</tbody>
+			</table>
+		</div>
+	</div>	
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">Add Employees</div>
+		<div class="panel-content">
+			<form role="form">
+				<div class="form-group">
+	                <label for="name-input">Employee Name</label>
+	                <input class="form-control" id="name-input" type="text">
+              	</div>
+              	<div class="form-group">
+	                <label for="role-input">Role</label>
+	                <input class="form-control" id="role-input" type="text">
+              	</div>
+              	<div class="form-group">
+	                <label for="date-input">Start Date</label>
+	                <input class="form-control" id="date-input" type="text">
+              	</div>
+              	<div class="form-group">
+	                <label for="rate-input">Monthly Rate</label>
+	                <input class="form-control" id="rate-input" type="text">
+              	</div>
+				<button class="btn btn-primary" id="add-user" type="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+ <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+ <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCGmYPDBwZauGK3aJKHvWjuazfQc3Xmv8U",
+    authDomain: "employee-database-1b1a1.firebaseapp.com",
+    databaseURL: "https://employee-database-1b1a1.firebaseio.com",
+    storageBucket: "employee-database-1b1a1.appspot.com",
+    messagingSenderId: "200777462950"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+  var name, role, sDate, mRate;
+
+  $("#add-user").on("click", function(){
+  	event.preventDefault();
+
+  	name = $("#name-input").val().trim();
+  	role = $("#role-input").val().trim();
+  	sDate = $("#date-input").val().trim();
+  	mRate = $("#rate-input").val().trim();
+
+  	console.log(name, role, sDate, mRate);
+
+  	database.ref().push({
+  		name: name,
+  		role: role,
+  		sDate: sDate,
+  		mRate: mRate 
+
+  	});
+  });
+
+  function dateCalc(){
+
+  };
+
+  function billMult(){
+
+  };
+
+  database.ref().on("child_added", function(childSnapshot){
+
+  	var sv = childSnapshot.val();
+  	console.log(sv);
+
+	var q = $("<tr>")
+	var r = $("<td>"+sv.name+"</td>");
+	q.append(r);
+	r = $("<td>"+sv.role+"</td>");
+	q.append(r);
+	r = $("<td>"+sv.sDate+"</td>");
+	q.append(r);
+	r = $("<td>"+sv.mRate+"</td>");
+	q.append(r);
+	$("#members").append(q);
+
+  }, function(errorObject){
+  	console.log("Readfailed: " + errorObject.code)
+  });
+
+
+
+  
+
+
+</script>
+
+</body>
+</html>

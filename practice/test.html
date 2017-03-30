@@ -1,0 +1,13 @@
+<script src="exampleClass.js" type="text/javascript"></script>
+<script>
+
+var instance1 = new exampleClass();
+var instance2 = new exampleClass();
+var result = instance1.method1("Hello", 3, true);
+
+instance1.property1 = 10;
+alert(instance1.property1); //alert 10
+alert(instance2.property1); //alert 5
+
+
+</script>

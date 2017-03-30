@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+<script type="text/javascript">
+
+var addy = ["New York", "New York", "New York", "Chicago", "LA", "LA", "LA"];
+var timey = [3, 7, 22, 55, 12, 32, 23];
+
+var cityLi = []
+	
+console.log("yo");
+
+var cityName;
+var cityTime = 0;
+
+for (var i = 0; i<addy.length; i++){
+	cityName = addy[i];
+	cityTime = timey[i];
+
+	cityLi.push({
+		city: cityName,
+		time: cityTime
+	});
+};
+
+console.log(cityLi);
+
+var output = [];
+cityLi.forEach(function(value) {
+  var existing = output.filter(function(v, i) {
+    return v.name == value.name;
+  });
+  if (existing.length) {
+    var existingIndex = output.indexOf(existing[0]);
+    output[existingIndex].value = output[existingIndex].value;
+  } else {
+    if (typeof value.value == 'string')
+      value.value = [value.value];
+    output.push(value);
+  }
+});
+
+console.dir(output);
+
+function sum() {
+    return Array.prototype.reduce.call(arguments, function(a, b) {
+        return a + b;
+    }, 0);
+}
+
+
+
+
+	</script>
+</head>
+<body>
+
+	<p>console it</p>
+</body>
+</html>
+
+
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ex</title>
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	
+	<div id="empty-div"></div>
+
+	<script type="text/javascript">
+
+		//var testElement = document.getElementById("test")
+		var targetDiv = $("#empty-div");
+
+		targetDiv.html("<h1>Hello Friends</h1>");
+
+		targetDiv.append("<h2>A pleasure to meet you!</h2>");
+
+		var newDiv = $("<div>");
+
+		targetDiv.append(newDiv);
+
+
+
+
+
+	</script>
+	
+</body>
+</html>

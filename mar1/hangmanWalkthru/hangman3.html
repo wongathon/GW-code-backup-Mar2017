@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+	<script>
+	
+	$(document).ready(function(){
+
+	var word = "kitty";
+	var viewGuesses = [];
+	var wrongGuesses = [];
+	for (var i = 0; i < word.length; i++){
+		viewGuesses[i] = "_ ";
+		console.log(viewGuesses[i]);
+	}
+
+	$("#blanks").append(viewGuesses);
+
+	$(document).keypress(function(event){
+
+		var input = event.key;
+		var wrongInput;
+
+		console.log(input);
+
+		for(var i=0; i<word.length; i++){
+			if(word[i]==input){
+				console.log("right letter");
+				viewGuesses[i] = word[i];
+
+				$("#blanks").html(viewGuesses);
+			} else if (word.indexOf(input) == -1){
+				wrongInput = input;
+				if(wrongGuesses.indexOf(wrongInput) == -1){
+					wrongGuesses.push(wrongInput);
+				}
+
+				console.log("wrong letter "+ wrongInput);
+
+			}
+		}
+
+
+		$("#wrong-letter").html(wrongGuesses);
+		console.log(viewGuesses);
+
+	});
+
+
+	});
+
+	</script>
+</head>
+<body>
+	<div id="blanks"></div>
+	<div id="wrong-letter"></p>
+</body>
+</html>

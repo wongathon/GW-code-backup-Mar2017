@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>This Example</title>
+</head>
+<body>
+
+  <h1>Make sure to view the console to see the action!</h1>
+
+  <script type="text/javascript">
+
+    // EXAMPLE ONE:
+    // --------------------------------------------------
+    // What is "this" going to print?
+
+    console.log(this); //the global object's components -- correct - Window
+
+
+    // EXAMPLE TWO:
+    // --------------------------------------------------
+    // What is "this" going to print?
+
+    function myFunction() {
+      console.log(this); // wrong? printed window . -- guess: the function myFunction object's components. Printed window > Because the function is not an object. 
+    }
+    myFunction();
+
+    // EXAMPLE THREE (IMPORTANT):
+    // --------------------------------------------------
+    // What is "someObj.say()" going to print?
+
+    var someObj = {
+      name: "Red Hat",
+      say: function() {
+        console.log(this.name);
+      }
+    };
+    someObj.say(); //"Red Hat" by running say function
+
+
+    // EXAMPLE FOUR (BONUS, TRICKY!):
+    // --------------------------------------------------
+    // What is "myObj.yell()" going to print? Why?
+
+    var myObj = {
+      name: "",
+      yell: function() {
+        this.name = "Star Powerup";
+
+        var changeName = function(newName) {//does work
+          this.name = newName; // sets window.name to "blue shell"
+        };
+        changeName("Blue Shell");
+        console.log(this); //prints the OBJECT, not the name attr. 
+      }
+    };
+    myObj.yell(); //"Blue Shell" - WRONG- printed object, name was "Star Powerup"
+
+
+    // EXAMPLE FIVE (BONUS, TRICKY!):
+    // --------------------------------------------------
+    // What is "myObj.yell()" going to print? Why?
+
+    var myObj = {
+      name: "",
+      yell: function() {
+
+        // This line is important!
+        var self = this;
+
+        this.name = "Star Powerup";
+        var changeName = function(newName) {
+          self.name = newName;
+        };
+        changeName("Blue Shell");
+        console.log(self);
+      }
+    };
+    myObj.yell();  /// prints "Star Powerup" - bc self refers to function, not myObj. 
+                    // WRONG - printed object, name is "Blue Shell"
+  </script>
+</body>
+</html>

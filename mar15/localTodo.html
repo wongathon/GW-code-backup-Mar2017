@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>To Do App!</title>
+
+    <style>
+      #todo-item {
+        font-weight: 700;
+        font-size: 2em;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Title -->
+    <h1>My To Do's!</h1>
+
+    <!-- Input Form -->
+    <form>
+      <span id="todo-item">To Do Item: <input id="to-do" type="text" ><input id="add-to-do" value="Add Item" type="submit"></span>
+    </form>
+
+    <hr>
+
+    <!-- To-Do List -->
+    <div id="to-dos"></div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- Script -->
+
+    <script>
+
+    var getArray = JSON.parse(localStorage.getItem("toDos"));
+
+    if(!Array.isArray(getArray)){
+      getArray = [];
+    }
+
+    displayItems();
+
+    function displayItems(){
+
+      $("#to-dos").empty();
+
+      var innerArray = JSON.parse(localStorage.getItem("toDos"));
+
+      if(!Array.isArray(innerArray)){
+        innerArray = [];
+      }
+
+      for (var i=0; i<innerArray.length; i++){
+        var p = $("<p>").text(innerArray[i]);
+        var b = $("<button class='delete'>").text("✓").attr("data-index",i);
+        p.prepend(b);
+        $("#to-dos").prepend(p);
+      };
+
+      console.log(innerArray);
+    }
+   
+    //  On Click event associated with the add-to-do function
+
+    $("#add-to-do").on("click", function(event) {
+      event.preventDefault();
+
+      // Get the to-do "value" from the textbox and store it a variable
+      var val = $("#to-do").val().trim();
+      $("#to-do").val("");
+      
+      getArray.push(val);
+      localStorage.setItem("toDos", JSON.stringify(getArray));
+
+      displayItems();
+
+    }); 
+
+    // When a user clicks a check box then delete the specific content
+    // (NOTE: Pay attention to the unusual syntax here for the click event.
+    // Because we are creating click events on "dynamic" content, we can't just use the usual "on" "click" syntax.)
+    $(document).on("click", "button.delete", function() {
+
+      // Get the number of the button from its data attribute and hold in a variable called  toDoNumber.
+      var todolist = JSON.parse(localStorage.getItem("toDos"));
+      var toDoNumber = $(this).attr("data-index");
+      // Select and Remove the specific <p> element that previously held the to do item number.
+      todolist.splice(toDoNumber, 1);
+      getArray = todolist;
+
+      // Select and Remove the specific <p> element that previously held the to do item number.
+      localStorage.setItem("toDos", JSON.stringify(todolist));
+
+      displayItems();
+    });
+
+    </script>
+
+  </body>
+
+</html>

@@ -1,0 +1,32 @@
+a:link {
+	color: yellow;
+}
+
+a:visited {
+	color: orange;
+	font-size: 40px;
+}
+
+a:hover {
+	color: green;
+	font-weight: bold;
+}
+
+a:active{
+	color: orange;
+	font-weight:bold;
+	font-size: 40px;
+	font-family: "Comic Sans MS", cursive, sans-serif ;
+}
+
+p {
+	display:none;
+	background-color:purple;
+	padding:10px;
+	font-size:80px;
+	color:white;
+}
+
+#four:hover p {
+	display: block;
+}

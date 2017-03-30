@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Trigger Clicked</title>
+
+  <!-- Added link to the jQuery Library -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+</head>
+
+<body>
+
+  <h1>Click to Eat Sandwich</h1>
+  <h3 id="pbj">Peanut Butter Jelly</h3>
+  <h3 id="grillcheese">Grilled Cheese</h3>
+  <h3 id="roastbeef">Roast Beef</h3>
+
+  <script type="text/javascript">
+
+    // This document.ready isn't necessary in this example... but is needed in cases where the HTML is complex.
+    // This code makes sure that the JavaScript doesn't get run until the HTML is finished loading
+    // It's useful to become familiar with now.
+
+    $(document).ready(function() {
+
+      // VARIABLES
+      // ====================================================================
+      // Here we create variables for tracking the number of sandwiches eaten
+      // ...
+        var ateTotal = 0;
+        var pbjAte = 0;
+        var gcAte = 0;
+        var rbAte = 0;
+
+      // ...
+
+      // FUNCTIONS
+      // ====================================================================
+      // Here we create various on "click" functions which capture the clicks
+      // Inside each click event is the code to create an alert, update the counter, then show the updated count.
+      // ...
+
+
+        //.html(" Ate: "+pbjAte);
+        $("h1").append("<div id=totEat>")
+        $("#pbj").append("<div id=pbjEat>");
+        $("#grillcheese").append("<div id=gcEat>");
+        $("#roastbeef").append("<div id=rbEat>");
+
+         function eatSandy(sand){
+          alert("You ate a " + sand);
+          ateTotal++;
+        }
+
+        $("#pbj").on("click", function() {
+          eatSandy("pbj");
+          alert("Mmm butter-jelly.")
+          pbjAte++;
+          $("#pbjEat").html("Ate: "+pbjAte);
+          $("#totEat").html("Ate: "+ateTotal);
+        });
+        
+        $("#grillcheese").on("click", function() {
+          eatSandy("grillcheese");
+          alert("Mmm cheesy.")
+          gcAte++;
+          $("#gcEat").html("Ate: "+gcAte);
+          $("#totEat").html("Ate: "+ateTotal);
+        });
+
+        $("#roastbeef").on("click", function() {
+          eatSandy("roastbeef");
+          alert("Mmm beefy.")
+          rbAte++;
+          $("#rbEat").html("Ate: "+rbAte);
+          $("#totEat").html("Ate: "+ateTotal);
+        });
+
+
+
+      // ...
+
+    });
+
+</script>
+
+</body>
+
+</html>
