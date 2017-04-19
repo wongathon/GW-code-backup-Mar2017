@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>To Do App!</title>
+
+    <style>
+      #todo-item {
+        font-weight: 700;
+        font-size: 2em;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Title -->
+    <h1>My To Do's!</h1>
+
+    <!-- Input Form -->
+    <form>
+      <span id="todo-item">To Do Item: <input id="to-do" type="text" ><input id="add-to-do" value="Add Item" type="submit"></span>
+    </form>
+
+    <hr>
+
+    <div id="to-dos"></div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+    <script>
+
+    var array = JSON.parse(localStorage.getItem("toDoList"));
+
+    if(!Array.isArray(array)){
+      array = [];
+    }
+
+    function displayMe (){
+
+      var displayArray = JSON.parse(localStorage.getItem("toDoList"));
+
+      $("#to-dos").empty();
+
+      if(!Array.isArray(displayArray)){
+        displayArray=[];
+      }
+
+      for (var i=0; i<displayArray.length; i++){
+        var p = $("<p>").text(displayArray[i]);
+        var b = $("<button>").addClass("delete").text(">|<").attr("data-index", i);
+        p.prepend(b);
+        $("#to-dos").prepend(p);
+      }
+
+      console.log(displayArray);
+
+    };
+
+    displayMe();
+
+    $(document).on("click", "#add-to-do", function(event){
+      event.preventDefault();
+
+      var va = $("#to-do").val();
+      $("#to-do").val("");
+
+      array.push(va);
+
+      localStorage.setItem("toDoList", JSON.stringify(array));
+
+      displayMe();
+
+
+    });
+
+    $(document).on("click", ".delete", function(){
+
+      var theList = JSON.parse(localStorage.getItem("toDoList"));
+      var theIndex = $(this).attr("data-index");
+
+      theList.splice(theIndex, 1);
+      array = theList;
+
+      localStorage.setItem("toDoList", JSON.stringify(array));
+
+      displayMe();
+
+    });
+    //
+
+
+
+
+    </script>
+
+  </body>
+
+</html>

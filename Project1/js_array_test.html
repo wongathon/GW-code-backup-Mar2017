@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+
+cities = ["New York", "New York", "New York", "LA", "LA", "LA", "DC", "DC", "DC"];
+times = [12, 342, 233, 130, 324, 111, 222, 444, 333];
+
+cities2 = [" Washington", " Washington", " Washington", " Washington", " Hyattsville", " Hyattsville", " Laurel", " Jessup", " Lansdowne", " Lansdowne", " Baltimore", " Newark", " New Castle", " Pennsville", " Carneys Point", " Bordentown", " Robbinsville", " Newark", " Newark", " New York", " New York", " New York", " New York", " New York", " New York", " New York", " New York"];
+
+times2 = [10, 254, 31, 432, 415, 34, 636, 458, 498, 22, 707, 2553, 534, 391, 50, 2504, 520, 2243, 29, 941, 26, 16, 78, 56, 88, 95, 27];
+
+function consolidateCities(arr1, arr2){
+
+  cityCatch = [];
+  timeCatch = [];
+
+  for (var i=0; i<arr1.length; i++){
+    if (arr1[i] == arr1[i+1]){
+      arr1.shift();
+      arr2[i+1] += arr2[i];
+      arr2.shift();
+      i--;      
+    } else {
+      cityCatch[i] = arr1[i];
+      timeCatch[i] = arr2[i];
+    }
+  };
+  console.log(cityCatch);
+  console.log(timeCatch);
+}
+
+//consolidateCities(cities, times);
+console.log(cities2);
+console.log(times2);
+
+
+consolidateCities(cities2, times2);
+
+
+
+	</script>
+</head>
+<body>
+
+	<p>console it</p>
+</body>
+</html>
+
+
+

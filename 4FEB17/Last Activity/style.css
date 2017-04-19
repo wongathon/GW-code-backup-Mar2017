@@ -1,0 +1,32 @@
+.fixed{
+	background-color: #eee;
+	padding: 40px;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+}
+
+.relative{
+	padding: 40px;
+	background-color: #eee;
+	position: relative;
+	margin: 20px auto 20px auto;
+	width: 55%;
+}
+
+.absolute{
+	background-color: #999;
+	position: absolute;
+	padding: 25px;
+	bottom: 0px;
+	right: 20px;
+}
+
+h2, p {
+	width: 60%;
+	margin: 50px auto 0px auto;
+}
+
+div {
+	text-align: center;
+}

@@ -1,0 +1,64 @@
+
+button {
+	font-weight: normal; 
+	color: purple;
+}
+
+button:focus {
+	color: green;
+	background-color: purple;
+}
+
+button:active {
+	color: blue;
+	font-weight: bold
+}
+
+button:hover {
+	background-color: red;
+	font-size: 20px;
+}
+
+#one {
+	font-family: arial;
+	font-size: 10px;
+	font-weight: 900;
+	line-height: 20px;
+	letter-spacing: 1px;
+
+}
+
+#two {
+	font-family: serif;
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 10px;
+	letter-spacing: 10px;
+}
+
+#three {
+	font-family: arial;
+	font-size: 20px;
+	font-weight: bolder;
+	line-height: 15px;
+	letter-spacing: 3px;
+}
+
+h1 {
+	font-family: 'Pangolin', cursive;
+	font-size: 20px;
+	font-weight: bolder;
+	line-height: 15px;
+	letter-spacing: 3px;
+}
+
+#four {
+	font-family: 'Cabin', sans-serif;
+	font-size: 40px;
+	letter-spacing: -2px;
+}
+
+#five {
+	font-family: 'Anton', sans-serif;
+	font-size: 30px;
+}

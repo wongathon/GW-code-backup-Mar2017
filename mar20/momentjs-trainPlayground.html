@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Moment JS Exercises</title>
+
+</head>
+
+<body>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- Link to Moment.js should go here -->
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+  <script>
+
+   var now = moment();
+
+   var freq = prompt("How many minutes frequency?"); //minutes
+   console.log("It is now "+now.format("HH:mm"));
+
+   var trainStart = prompt("What is start time?");
+   var conv = trainStart.split(":");
+   console.log(conv);
+
+
+   var trainStartTime = now.hour(conv[0]).minute(conv[1]).second(0);
+   console.log("Start Time: "+trainStartTime.format("HH:mm"));
+
+   function minConv(time){
+     var hours = time.format("H");
+     var minutize = hours*60;
+     var minutes = parseInt(time.format("m"));
+     var total = minutize + minutes;
+     return total;
+    }
+
+    var minStart = minConv(trainStartTime);
+
+    now = moment();
+    var minNow = minConv(now);
+
+    console.log(minStart +" "+ minNow);
+
+    var nextTrain = (minNow - minStart)%freq;
+    var minTil = freq-nextTrain;
+    console.log(minTil +" minutes til next train...");
+
+    now.add(minTil, 'm');
+    console.log("Train will arrive @ " +now.format("HH:mm"));
+
+
+  </script>
+
+</body>
+
+</html>

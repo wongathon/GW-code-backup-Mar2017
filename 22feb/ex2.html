@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ex</title>
+</head>
+<body>
+	
+	<div id="empty-div"></div>
+
+	<script type="text/javascript">
+	
+		var targetDiv = document.getElementById("empty-div");
+
+		var newDiv = document.createElement("div");
+
+		targetDiv.innerHTML = "Hi there!! ";
+
+		newDiv.innerHTML += "A pleasure to meet you!";
+
+		targetDiv.appendChild(newDiv);
+
+		newDiv.setAttribute("style", "color:red")
+
+	</script>
+	
+</body>
+</html>

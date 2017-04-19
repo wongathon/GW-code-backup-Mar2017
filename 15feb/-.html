@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors Part 2</title>
+  </head>
+  <body>
+
+    <div id="game">
+      <p> Ro-Sham-Bo! Hit R, P, or S to play!</p>
+
+    </div>
+
+    <script type="text/javascript">
+
+      // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+      var options = ["r", "p", "s"];
+      r = options[0];
+      p = options[1];
+      s = options[2];
+      var ties = 0;
+      var win = 0;
+      var losses = 0;
+
+      // This function is run whenever the user presses a key.
+      document.onkeyup = function(event) {
+
+        // Determines which key was pressed
+        var userGuess = event.key;
+
+        // Alerts the key the user pressed (userGuess).
+
+        function hi(guess){
+          if (guess=="r")
+            return "rock *";
+          else if (guess=="p")
+            return "paper []";
+          else if (guess=="s")
+            return "scissors 8<";
+          else return "No Move!";
+        }
+
+        alert("User throws " + hi(userGuess) +".");
+
+        // Randomly chooses a choice from the options array. This is the Computer's guess.
+        var computerGuess = options[Math.floor(Math.random() * options.length)];
+
+        // Alerts the Computer's guess.
+        alert("Computer throws " + hi(computerGuess)+".");
+
+  
+      if (userGuess === computerGuess) {
+        alert("Tie!");
+        ties++;
+      } else if (userGuess === r && computerGuess === s) {
+        alert("Win! *   >.'8");
+        win++;
+      } else if (userGuess === r && computerGuess === p) {
+        alert("Lose! [*]");
+        losses++;
+      } else if (userGuess === s && computerGuess === r) {
+        alert("Lose! 8.,'<   *");
+        losses++;
+      } else if (userGuess === s && computerGuess === p) {
+        alert("Win! 8<   [ / ] ");
+        win++;
+      } else if (userGuess === p && computerGuess === s) {
+        alert("Lose! [ \\ ]  >8");
+        losses++;
+      } else if (userGuess === p && computerGuess === r) {
+        alert("Win! [*]");
+        win++;
+      } else {
+        alert("Forfeit! X X X");
+        losses++;
+      }
+
+      var game = document.getElementById("game");
+      game.innerHTML = "<h1>ROCK * PAPER [] SCISSOR >8 ME TIMBERS!</h1><strong>Press R, P, or S to move.</strong><br><br>Wins: " + win + "!<br>Losses: " + losses + " :( <br>Ties: " + ties + " -_-";
+      };
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "mypackage",
+  "version": "1.0.1",
+  "description": "My cool package",
+  "main": "commandSort.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "geocoder": "^0.2.3",
+    "weather-js": "^2.0.0"
+  }
+}

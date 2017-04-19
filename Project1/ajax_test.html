@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+
+doSearch("Washington DC")
+
+function doSearch(city){
+  var songsNum = 50; //seconds of travel divided by avg. song length
+
+  var myUrl = 'https://api.spotify.com/v1/search?type=track&q=' + encodeURIComponent(city) + "&type=track&offset=0&limit=" + songsNum;
+
+  $.ajax({
+    url: myUrl,
+    method: "GET"
+  }).done(function(r){
+
+    for (var i=0; i<r.tracks.items.length; i++){
+      var di = $("<tr>");
+        var s = r.tracks.items[i].name;
+        di.append(s);
+      for (var j=0; j<r.tracks.items[i].artists.length; j++){
+        var a = r.tracks.items[i].artists[j].name;
+        di.append(a);
+      }
+      console.log(a, s);
+      $("#songs-list").append(di);
+    }
+  });
+
+}
+
+function displaySongs(arr1, arr2){
+  for (var i=0; i<arr1.length; i++){
+    doSearch(arr1[i], arr2[i]);
+  };
+}
+
+	</script>
+</head>
+<body>
+
+	<p>console it</p>
+</body>
+</html>
+
+
+

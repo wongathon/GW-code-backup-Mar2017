@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ex1</title>
+
+</head>
+<body>
+
+	<script type="text/javascript">
+		function consoleInside(arr) {
+
+			for (var i=0; i<arr.length; i++){
+				console.log(arr[i]);
+			}
+			console.log('------------');
+
+		}
+
+		var brandy =['reee','rrooo','pooo'];
+		var sticky = [1,2,3,4,5,6];
+		var plethy = "Plethora";
+		var twoDee = [['haha','hoho'],[2,3,4],['yes', 'no', true, false]];
+
+		/*
+		consoleInside(brandy);
+		consoleInside(sticky);
+		consoleInside(plethy); //prints each character (string) on a line
+		consoleInside(twoDee); //prints each array in [] 
+		*/
+
+		var arrays = [brandy, sticky, plethy, twoDee];
+
+		for (i = 0; i<arrays.length; i++){
+			consoleInside(arrays[i]);
+		}
+
+
+	</script>
+
+</body>
+</html>

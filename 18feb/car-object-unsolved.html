@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>My First Object</title>
+  </head>
+  <body>
+
+    <h1>Stripped Down Car Game!</h1>
+
+    <p>Press 'd' to drive to work, 'w' to drive around the world, 't' to tune up, and 'h' to honk! &#x263a;</p>
+
+    <script>
+
+      var car = {
+        make: "Honda",
+        model: "Fit",
+        color: "Blue Raspberry",
+        mileage: 3000,
+        isWorking: true,
+
+        driveToWork: function() {
+
+          alert( "| " +"\uD83D\uDE05" +" |" + "\no==o VROOM VROOM!");
+          alert("You drove to work!"); 
+          alert("Old Mileage: " + this.mileage);
+
+          this.mileage = this.mileage + 8;
+
+          alert("New mileage: " + this.mileage);
+        },
+
+        driveAroundWorld: function() {
+
+          alert( "| " +"\uD83D\uDE05" +" |" + "\no==o VROOM VROOM!");
+          alert("1 year later...");
+          alert("You drove around the world!");
+          alert("Old Mileage: " + this.mileage);
+
+          this.mileage = this.mileage + 24000;
+
+          alert("New Mileage: " + this.mileage);
+          alert( "| " +"\uD83D\uDE05" +" |" + "\no==o Sputter blep wheeze.");
+          alert("Car needs a tuneup!");
+
+          this.isWorking = false;
+        },
+
+        getTuneUp: function() {
+          alert("You got a MUFUGGIN TUNE UP!")
+          alert("Car is ready to go!");
+          this.isWorking = true;
+        },
+
+        honkTimes: 0,
+
+        honk: function() {
+          if (this.honkTimes == 10){
+            alert("Shut up!! This is a no-honkin zone!")
+            this.honkTimes = 0;
+          }
+
+          alert("Honk! Honk!");
+          this.honkTimes++
+        }
+      };
+
+    document.onkeyup = function(event) {
+
+      var myInput = event.key;
+
+      // d w t h
+      if (myInput === 'd' && car.isWorking != true) alert("Get a tune up!");
+      else if (myInput === 'd' && car.isWorking != false) car.driveToWork();
+      else if (myInput === 'w' && car.isWorking != true) alert("Get a tune up!");
+      else if (myInput === 'w' && car.isWorking != false) car.driveAroundWorld();
+      else if (myInput === 't' && car.isWorking != true) car.getTuneUp();
+      else if (myInput === 't' && car.isWorking != false) alert("We don't need no stinkin tune up!!!")
+      else if (myInput === 'h') car.honk();
+      else alert("Not an input!")
+
+    };
+
+    </script>
+    
+  </body>
+</html>
